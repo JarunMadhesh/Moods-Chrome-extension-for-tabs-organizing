@@ -1,0 +1,23 @@
+{
+    "name":"Mood",
+    "description": "This handles different moods in Chrome.",
+    "version":"1.0",
+    "manifest_version":3,
+    "background": {
+        "service_worker":"background/background.js"
+    },
+    "permissions": ["storage", "tabs", "scripting", "bookmarks"],
+    "action": {
+        "default_popup": "main/index.html"
+    },
+    "options_page": "background/options.html",
+    "commands": {
+        "_execute_action": {
+          "suggested_key": {
+            "default": "Ctrl+Shift+F",
+            "mac": "MacCtrl+Shift+F"
+          },
+          "description": "Opens main/popup.html"
+        }
+      }
+}
