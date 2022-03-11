@@ -41,20 +41,26 @@ async function addMoodListTiles() {
   await chrome.storage.sync.get("moods", async ({ moods }) => {
     await chrome.storage.sync.get("activeMood", ({ activeMood }) => {
       for (let key in moods) {
-        const div = document.createElement("div");
+        const each = document.createElement("li");
 
         if (key === activeMood) {
-          div.className = "activeMoodTile";
+          each.className = "activeMoodTile";
         } else {
-          div.className = "eachMoodTile";
+          each.className = "eachMoodTile";
         }
 
-        div.setAttribute("id", key);
+        each.setAttribute("id", key);
         const p = document.createElement("p");
         p.className = "moodName";
         p.innerText = key;
-        div.appendChild(p);
-        document.getElementById("moods").appendChild(div);
+        each.appendChild(p);
+
+        const button = document.createElement("button");
+        button.innerText = ":";
+
+        each.appendChild(button);
+
+        document.getElementById("moods").appendChild(each);
       }
 
       // Set gotomood function for all not selected

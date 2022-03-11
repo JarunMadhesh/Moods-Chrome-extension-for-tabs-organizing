@@ -1,6 +1,11 @@
 let activeMood = "";
 
-let moods = {};
+let moods = {
+  mood1: "123",
+  mood2: "32",
+  mood3: "42",
+  mood4: "12",
+};
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ activeMood });

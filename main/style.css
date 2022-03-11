@@ -1,21 +1,84 @@
-.eachMoodTile {
+:root {
+  --bgcolor: #f8eee7;
+  --primarycolor: #49274a;
+  --secondarycolor: #94618e;
+  --accentcolor: #f4decb;
+}
+
+body {
+  max-height: 400px;
+  width: 300px;
+  background-color: var(--bgcolor);
+  padding: 5px;
+}
+
+.apptitle {
+  font-size: 1.2em;
+  display: flex;
+  /* padding-left: 10px; */
+  font-family: "roboto slab", "Gill sans", "Gill Sans MT";
+  color: var(--primarycolor);
+}
+
+.update {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: var(--primarycolor);
+  color: var(--accentcolor);
+}
+
+.moods {
+  height: 200px;
+}
+
+.moods {
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondarycolor);
+  border-radius: 5px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
   height: 40px;
-  width: 200px;
+  width: auto;
   outline: 1px solid grey;
   background-color: whitesmoke;
-  margin: 2px 5px;
-  border-radius: 10px;
-  display: block;
+  margin: 10px 5px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  justify-content: space-between;
 }
 
 .activeMoodTile {
   height: 40px;
-  width: 200px;
+  width: auto;
   outline: 1px solid grey;
   background-color: greenyellow;
-  margin: 2px 5px;
-  border-radius: 10px;
-  display: block;
+  margin: 10px 5px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  justify-content: space-between;
 }
 
 body {
@@ -32,7 +95,12 @@ body {
   display: flex;
 }
 
-button {
+.moreInfo {
+  position: absolute;
+  right: 10px;
+}
+
+/* button {
   height: 30px;
   width: 130px;
   outline: none;
@@ -40,4 +108,21 @@ button {
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 0 2-x white, 0 0 0 4px black;
+} */
+
+.addmood {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: var(--primarycolor);
+  color: var(--accentcolor);
+  font-size: 2.5em;
+}
+
+.credit {
+  /* position: fixed; */
+  text-align: right;
+  padding-bottom: 10px;
+  padding-right: 12px;
+  color: var(--primarycolor);
 }
