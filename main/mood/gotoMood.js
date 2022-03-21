@@ -22,7 +22,27 @@ function ifMoodNotAvailable(err) {
   p.innerHTML = err.toString();
 }
 
-async function gotoMood() {
+async function gotoMood(selectedMood) {
+  //Get the active mood name from the storage
+
+  title = selectedMood;
+
+  chrome.storage.sync.get("activeMood", async ({ activeMood }) => {
+    if (activeMood != "") {
+      await updateMood("ignore");
+    }
+
+    chrome.storage.sync.set({ activeMood: selectedMood });
+
+    chrome.storage.sync.get("moods", ({ moods }) => {
+      id = moods[selectedMood];
+      var getBookmarks = chrome.bookmarks.getChildren(id.toString());
+      getBookmarks.then(ifMoodAvailable, ifMoodNotAvailable);
+    });
+  });
+}
+
+async function gotocurrentMood() {
   //Get the active mood name from the storage
   chrome.storage.sync.get("activeMood", ({ activeMood }) => {
     title = activeMood;
@@ -32,17 +52,5 @@ async function gotoMood() {
       var getBookmarks = chrome.bookmarks.getChildren(id.toString());
       getBookmarks.then(ifMoodAvailable, ifMoodNotAvailable);
     });
-  });
-}
-
-async function gotoMood(selectedMood) {
-  //Get the active mood name from the storage
-  chrome.storage.sync.set({ activeMood: selectedMood });
-  title = selectedMood;
-
-  chrome.storage.sync.get("moods", ({ moods }) => {
-    id = moods[selectedMood];
-    var getBookmarks = chrome.bookmarks.getChildren(id.toString());
-    getBookmarks.then(ifMoodAvailable, ifMoodNotAvailable);
   });
 }

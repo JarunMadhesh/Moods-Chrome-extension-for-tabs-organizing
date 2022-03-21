@@ -1,21 +1,17 @@
-submit.addEventListener("click", async () => {
-  addMoodtoMoods();
-});
-
 async function addMoodtoMoods() {
-  let text = document.getElementById("input").value;
+  let text = document.getElementById("newMoodName").value;
 
   await chrome.storage.sync.get("moods", async ({ moods }) => {
     if (!(text in moods)) {
       document.getElementById("h5").innerHTML = text;
-
+      if (Object.keys(moods).length > 0) updateMood("ignore");
       await addMood(moods, text);
       await chrome.windows.create({
         url: "http://www.google.com",
       });
       await chrome.storage.sync.set({ activeMood: text });
     } else {
-      document.getElementById("h5").innerHTML = "Error";
+      alert("Mood by this name already exists. Choose another name!");
     }
   });
 }
@@ -42,4 +38,5 @@ async function addMood(moods, title) {
       }
     }
   );
+  window.close();
 }

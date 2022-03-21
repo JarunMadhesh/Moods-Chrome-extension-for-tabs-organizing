@@ -5,6 +5,21 @@
   --accentcolor: #f4decb;
 }
 
+/* :root {
+  --bgcolor: #e9e9e9;
+  --primarycolor: #8888d6;
+  --secondarycolor: #99d3df;
+  --accentcolor: #cdcdcd;
+} */
+
+/* 
+:root {
+  --bgcolor: #f5f5f5;
+  --primarycolor: #0f1626;
+  --secondarycolor: #ab987a;
+  --accentcolor: #ff533d;
+} */
+
 body {
   max-height: 400px;
   width: 300px;
@@ -12,23 +27,47 @@ body {
   padding: 5px;
 }
 
+.svg1 {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  z-index: -5;
+}
+
+.svg2 {
+  position: absolute;
+  bottom: -40px;
+  right: -20px;
+  z-index: -5;
+}
+
 .apptitle {
   font-size: 1.2em;
   display: flex;
-  /* padding-left: 10px; */
-  font-family: "roboto slab", "Gill sans", "Gill Sans MT";
+  padding: 0px 10px;
   color: var(--primarycolor);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.apptitle h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .update {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  position: absolute;
-  right: 20px;
-  top: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  padding-top: 5px;
   background-color: var(--primarycolor);
   color: var(--accentcolor);
+  align-items: center;
+  justify-content: center;
+}
+
+.prompt {
+  padding: 30px;
+  justify-content: center;
 }
 
 .moods {
@@ -58,9 +97,10 @@ ul {
 li {
   height: 40px;
   width: auto;
-  outline: 1px solid grey;
-  background-color: whitesmoke;
-  margin: 10px 5px;
+  outline: 1px solid var(--secondarycolor);
+  background-color: var(--accentcolor);
+  /* color: var(--primarycolor); */
+  margin: 8.5px 5px;
   border-radius: 2px;
   display: flex;
   align-items: center;
@@ -68,18 +108,33 @@ li {
   justify-content: space-between;
 }
 
+li p {
+  height: 28px;
+  width: 75%;
+  padding-top: 7px;
+  max-lines: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .activeMoodTile {
   height: 40px;
   width: auto;
-  outline: 1px solid grey;
-  background-color: greenyellow;
-  margin: 10px 5px;
+  outline: 1px solid var(--primarycolor);
+  background-color: var(--secondarycolor);
+  color: var(--bgcolor);
+  margin: 9px 5px;
   border-radius: 2px;
   display: flex;
   align-items: center;
   padding: 0px 10px;
   justify-content: space-between;
 }
+/* 
+.overWrite {
+  margin-right: 3px;
+} */
 
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -87,36 +142,50 @@ body {
 
 .moodName {
   font-size: 1.3em;
-  text-align: center;
-  vertical-align: middle;
 }
 
-.eachMood {
+.inputContainer {
   display: flex;
+  /* justify-content: space-between; */
+  padding: 0px 5px;
 }
 
-.moreInfo {
-  position: absolute;
-  right: 10px;
-}
-
-/* button {
+.inputMoodTextArea {
+  margin-top: 1px;
+  width: 80%;
   height: 30px;
-  width: 130px;
-  outline: none;
-  margin: 10px;
-  border: none;
   border-radius: 2px;
-  box-shadow: 0 0 0 2-x white, 0 0 0 4px black;
-} */
+  background-color: var(--accentcolor);
+  color: var(--primarycolor);
+  border: var(--secondarycolor) 1px solid;
+  font-size: 1.2em;
+  padding: 0px 10px;
+  margin-right: 12px;
+  animation-name: inputmoodareaanimation;
+  animation-duration: 200ms;
+}
+
+@keyframes inputmoodareaanimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+label {
+  color: var(--bgcolor);
+}
 
 .addmood {
   width: 35px;
   height: 35px;
   border-radius: 10px;
   background-color: var(--primarycolor);
-  color: var(--accentcolor);
+  color: var(--bgcolor);
   font-size: 2.5em;
+  box-shadow: inset;
 }
 
 .credit {

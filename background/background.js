@@ -1,11 +1,6 @@
 let activeMood = "";
 
-let moods = {
-  mood1: "123",
-  mood2: "32",
-  mood3: "42",
-  mood4: "12",
-};
+let moods = {};
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ activeMood });
@@ -14,18 +9,24 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("Default mood set to ", `activemood: ${activeMood}`);
 });
 
-chrome.runtime.onSuspend.addListener(function () {
-  console.log("Unloading.");
+// chrome.runtime.onSuspend.addListener(function async() {
+//   // console.log("Chrome closed");
 
-  chrome.tabs.create({
-    title: "asdf",
-    url: null,
-  });
-});
+//   if (prompt("Do you want to update?")) {
+//     chrome.storage.sync.get("activeMood", async ({ activeMood }) => {
+//       if (activeMood != "") {
+//         await updateMoods("ignore");
+//       }
 
-chrome.bookmarks.onChanged.addListener((id, obj) => {
-  // if(obj.url==null && obj.title) {
-  // }
+//       // activeMood = "";
+//       // chrome.storage.sync.set({ activeMood });
+//     });
+//   }
+// });
+
+chrome.runtime.onStartup.addListener(function () {
+  activeMood = "";
+  chrome.storage.sync.set({ activeMood });
 });
 
 chrome.bookmarks.onCreated.addListener((id, bookmark) => {

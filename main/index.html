@@ -11,22 +11,39 @@
 
     <div class="container">
 
+        
+        <svg height="100" width="100" class="svg1" >
+            <circle cx="40" cy="40" r="40" stroke="#49274a" stroke-width="10" fill="none" stroke-dasharray="1,8" d="M5 20 l215 0"  />
+          </svg>
+
+          <svg height="150" width="150" class = "svg2" >
+            <circle cx="70" cy="70" r="60" stroke="#49274a" stroke-width="10" fill="none" stroke-dasharray="1,8" d="M5 20 l215 0"  />
+          </svg>
+
         <div class="apptitle">
             <h1>Moods</h1>
-            <button class="update" id="updatemood">U</button>
+            <button class="update" id="updatemood"> 
+                <img src="assets/update.png" alt="update" height="20px" width="20px" >
+                 </button>
         </div>
 
+        <h4 class="prompt" id="prompt">
+            Hello guys,<br> Welcome to this chrome extension "Moods"
+            <br><br>This help your browser handle your mood swings by saving all the tabs to get back when you swing back. 
+
+            <br><br> Get started by adding your first mood...
+        </h4>
         <ul id="moods" class="moods"></ul>
     
-    
-        <div id="newmood">
-            <label for="input">Input Mood name: </label>
-            <input type="text" id="input">
-    
-            <input type="button" id="submit" value="Submit">
+
+        <label for="newMoodName">dummy name</label>
+
+        <form class="inputContainer">
+            
+            <input type="hidden" id="newMoodName" class="inputMoodTextArea" autocomplete="off" >
+            <input type="button" value="+" class="addmood" id="addmood">
         </div>
-
-
+            
         
         <p id="webpage"></p>
     
@@ -34,24 +51,20 @@
     
         <h5 id="h5"></h5>
 
-        <div>
-            <label for="moodName">asd</label>
-            <input type="text" id="moodName">
-            <button class="addmood">+</button>
-        </div>
-        
 
 
-        <p class="credit">@madebyJarunie</p>
+        <p class="credit">@madeforJarunie</p>
     </div>
 
-   
-  
 
 
     <script type="text/javascript" src="mood/gotoMood.js"></script>
     <script type="text/javascript" src="mood/addMood.js"></script>
     <script type="text/javascript" src="mood/updateMood.js"></script>
+    <script type="text/javascript" src="mood/deleteMood.js"></script>
+    <script type="text/javascript" src="mood/overwriteMoods.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="animateAdd.js"></script>
+    
 </body>
 </html>

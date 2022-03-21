@@ -38,24 +38,9 @@ function ifNotAvailable(err) {
   addTabsToMood();
 }
 
-function searchForMoodIDbyName(children) {
-  children.forEach(function (bookmark) {
-    if (bookmark.children) {
-      p.innerHTML +=
-        "Folder name: " + bookmark.title + " " + bookmark.id + "<br>";
-      if (tempActiveMood == bookmark.title) {
-        document.getElementById("h4").innerHTML += "id added ";
-        id = bookmark.id;
-      }
-      searchForMoodIDbyName(bookmark.children);
-    }
-  });
-}
-
-async function updateMood() {
+async function updateMood(type = " updated") {
   tabs = await chrome.tabs.query({ currentWindow: true }); // active:true
   await chrome.storage.sync.get("activeMood", async ({ activeMood }) => {
-    p.innerHTML += "<br>" + activeMood + "<br>";
     tempActiveMood = activeMood;
 
     await chrome.storage.sync.get("moods", async ({ moods }) => {
@@ -65,38 +50,11 @@ async function updateMood() {
       document.getElementById("h4").innerHTML +=
         " Moods length: " + Object.keys(moods).length + "<br>";
 
-      // for (let key in moods) {
-      //   document.getElementById("h4").innerHTML +=
-      //     key + ":" + moods[key] + "<br>";
-      // }
-
-      // await chrome.bookmarks.getTree(function (bookmarks) {
-      //   searchForMoodIDbyName(bookmarks);
-
-      //   // chrome.bookmarks.get(id.toString()).then(ifAvailable, ifNotAvailable);
-      // });
-
       p.innerHTML += id.toString() + "<br>";
 
       ifAvailable(id);
     });
   });
+  if (type != "ignore") alert("Successfuly" + type);
+  window.close();
 }
-
-// async function updateMood(activeMood) {
-//   tabs = await chrome.tabs.query({ currentWindow: true }); // active:true
-//   p.innerHTML += "<br>" + activeMood + "<br>";
-//   tempActiveMood = activeMood;
-
-//   await chrome.storage.sync.get("moods", async ({ moods }) => {
-//     tempMoods = moods;
-//     id = moods[activeMood];
-
-//     document.getElementById("h4").innerHTML +=
-//       " Moods length: " + Object.keys(moods).length + "<br>";
-
-//     p.innerHTML += id.toString() + "<br>";
-
-//     ifAvailable(id);
-//   });
-// }
