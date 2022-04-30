@@ -2,11 +2,15 @@ let activeMood = "";
 
 let moods = {};
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ activeMood });
-  chrome.storage.sync.set({ moods });
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason == "install") {
+    chrome.storage.sync.set({ activeMood });
+    chrome.storage.sync.set({ moods });
 
-  console.log("Default mood set to ", `activemood: ${activeMood}`);
+    console.log("Default mood set to ", `activemood: ${activeMood}`);
+  } else if (details.reason == "update") {
+    console.log("Updated!");
+  }
 });
 
 // chrome.runtime.onSuspend.addListener(function async() {

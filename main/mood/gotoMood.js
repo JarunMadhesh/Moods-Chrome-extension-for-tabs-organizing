@@ -1,6 +1,6 @@
-function ifMoodAvailable(bookmarks) {
+async function ifMoodAvailable(bookmarks) {
   // closing all the opened tabs
-  chrome.tabs.query({}, function (tabs) {
+  await chrome.tabs.query({}, function (tabs) {
     for (var i = 0; i < tabs.length; i++) {
       chrome.tabs.remove(tabs[i].id);
     }
@@ -32,7 +32,7 @@ async function gotoMood(selectedMood) {
       await updateMood("ignore");
     }
 
-    chrome.storage.sync.set({ activeMood: selectedMood });
+    await chrome.storage.sync.set({ activeMood: selectedMood });
 
     chrome.storage.sync.get("moods", ({ moods }) => {
       id = moods[selectedMood];
